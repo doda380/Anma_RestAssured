@@ -1,4 +1,4 @@
-package APIs;
+package Pojo;
 
 public class UserMessages {
 

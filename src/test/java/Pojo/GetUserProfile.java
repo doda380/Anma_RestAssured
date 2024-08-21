@@ -1,16 +1,19 @@
-package APIs;
+package Pojo;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
-import org.testng.annotations.Test;
+import stepDefinitions.Login;
+
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class GetProfile {
 
+public class GetUserProfile {
     @JsonProperty("Total")
     private String Total;
 
@@ -32,10 +35,8 @@ public class GetProfile {
     @JsonProperty("IsSuccess")
     private String IsSuccess;
 
-
     @JsonProperty("Exception")
     private String Exception;
-
 
     public String getTotal() {
         return Total;
@@ -100,23 +101,23 @@ public class GetProfile {
     }
 
 
-    @Test
+    String BodyResponse;
+    UserLogin tkn = new UserLogin();
+    GetUserProfile gp;
     public void UserProfile() {
-        UserLogin tkn = new UserLogin();
-        GetProfile gp = given().header("Authorization", "Bearer "+ tkn.token)
-                .when().log().all()
-                .get("https://qcapi.anma.edu.sa/Api/BeneficiaryUser/GetUser").as(GetProfile.class);
+
+         gp = given().header("Authorization", tkn.getToken()).
+                when().log().all()
+                .get("https://qcapi.anma.edu.sa/Api/BeneficiaryUser/GetUser").as(GetUserProfile.class);
         System.out.println(gp.getData().getFirstNameAr());
+
     }
 
+
+    public void DisplayRespone() {
+
+
+    }
+
+
 }
-
-
-//@Test
-//public void UserProfile() {
-//    UserLogin tkn = new UserLogin();
-//    GetProfile gp = given().header("Authorization", "Bearer "+ tkn.token)
-//            .when().log().all()
-//            .get("https://qcapi.anma.edu.sa/Api/BeneficiaryUser/GetUser").as(GetProfile.class);
-//    System.out.println(gp.getData().getFirstNameAr());
-//}

@@ -1,4 +1,4 @@
-package APIs;
+package Pojo;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

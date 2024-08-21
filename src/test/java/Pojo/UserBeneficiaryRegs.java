@@ -1,17 +1,7 @@
-package APIs;
+package Pojo;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
-import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
-
-
-public class BeneficiaryRegs {
+public class UserBeneficiaryRegs {
 
         @JsonProperty("UserName")
         private String userName;
@@ -35,7 +25,7 @@ public class BeneficiaryRegs {
         private String mobileNumber;
 
         @JsonProperty("PhoneKeyId")
-        private int phoneKeyId;
+        private String phoneKeyId;
 
         @JsonProperty("NationalID")
         private String nationalID;
@@ -44,10 +34,10 @@ public class BeneficiaryRegs {
         private String gender;
 
         @JsonProperty("ResidenceCountryId")
-        private int residenceCountryId;
+        private String residenceCountryId;
 
         @JsonProperty("CityId")
-        private int cityId;
+        private String cityId;
 
         @JsonProperty("BuildingNo")
         private String buildingNo;
@@ -62,13 +52,13 @@ public class BeneficiaryRegs {
         private String occupation;
 
         @JsonProperty("EducationLevelId")
-        private int educationLevelId;
+        private String educationLevelId;
 
         @JsonProperty("Password")
         private String password;
 
         @JsonProperty("UserClassificationId")
-        private int userClassificationId;
+        private String userClassificationId;
 
         @JsonProperty("MiddleNameAr")
         private String middleNameAr;
@@ -76,10 +66,6 @@ public class BeneficiaryRegs {
         @JsonProperty("MiddleNameEn")
         private String middleNameEn;
 
-
-    RequestSpecification bldr = new RequestSpecBuilder().setBaseUri("https://qcapi.anma.edu.sa/Api").setContentType("Application/json").build();
-
-    ResponseSpecification respspec = new ResponseSpecBuilder().expectStatusCode(200).build();
 
         public String getUserName() {
             return this.userName;
@@ -137,11 +123,11 @@ public class BeneficiaryRegs {
             this.mobileNumber = mobileNumber;
         }
 
-        public int getPhoneKeyId() {
+        public String getPhoneKeyId() {
             return this.phoneKeyId;
         }
 
-        public void setPhoneKeyId(int phoneKeyId) {
+        public void setPhoneKeyId(String phoneKeyId) {
             this.phoneKeyId = phoneKeyId;
         }
 
@@ -161,19 +147,19 @@ public class BeneficiaryRegs {
             this.gender = gender;
         }
 
-        public int getResidenceCountryId() {
+        public String getResidenceCountryId() {
             return this.residenceCountryId;
         }
 
-        public void setResidenceCountryId(int residenceCountryId) {
+        public void setResidenceCountryId(String residenceCountryId) {
             this.residenceCountryId = residenceCountryId;
         }
 
-        public int getCityId() {
+        public String getCityId() {
             return this.cityId;
         }
 
-        public void setCityId(int cityId) {
+        public void setCityId(String cityId) {
             this.cityId = cityId;
         }
 
@@ -210,11 +196,11 @@ public class BeneficiaryRegs {
             this.occupation = occupation;
         }
 
-        public int getEducationLevelId() {
+        public String getEducationLevelId() {
             return this.educationLevelId;
         }
 
-        public void setEducationLevelId(int educationLevelId) {
+        public void setEducationLevelId(String educationLevelId) {
             this.educationLevelId = educationLevelId;
         }
 
@@ -227,11 +213,11 @@ public class BeneficiaryRegs {
             this.password = password;
         }
 
-        public int getUserClassificationId() {
+        public String getUserClassificationId() {
             return this.userClassificationId;
         }
 
-        public void setUserClassificationId(int userClassificationId) {
+        public void setUserClassificationId(String userClassificationId) {
             this.userClassificationId = userClassificationId;
         }
 
@@ -250,41 +236,5 @@ public class BeneficiaryRegs {
         public void setMiddleNameEn(String middleNameEn) {
             this.middleNameEn = middleNameEn;
         }
-
-
-
-
-    @Test
-    public void BenfuserReg() {                                   // This function for beneficary user regestration only
-        BeneficiaryRegs userProfile = new BeneficiaryRegs();
-        userProfile.setMobileNumber("051110561");                 // change the mobile No.
-        userProfile.setPhoneKeyId(1);
-        userProfile.setUserClassificationId(1);
-        userProfile.setEmail("klm03@grr.la");                      // change the Email
-        userProfile.setUserName("veklm55");                        // change the username
-        userProfile.setPassword("Ahmed50#");
-        userProfile.setFirstNameAr("تست");
-        userProfile.setMiddleNameAr("تست");
-        userProfile.setLastNameAr("تست");
-        userProfile.setFirstNameEn("Gwendolyn");
-        userProfile.setMiddleNameEn("Madonna");
-        userProfile.setLastNameEn("Castaneda");
-        userProfile.setNationalID("75765567577");                  // change the National ID
-        userProfile.setGender("Male");
-        userProfile.setResidenceCountryId(1);
-        userProfile.setCityId(2);
-        userProfile.setDistrict("Nozha");
-        userProfile.setEducationLevelId(7);
-        userProfile.setStreet("6");
-        userProfile.setBuildingNo("4");
-        userProfile.setOccupation("test test 05");
-
-        RequestSpecification res = given().spec(bldr).body(userProfile);
-        Response r =  res.when().post("/WebUserAuth/BeneficiarySignup")
-                .then().spec(respspec).extract().response();
-
-        String response =r.asPrettyString();
-        System.out.println(response);
-    }
 
 }

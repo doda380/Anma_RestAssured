@@ -14,6 +14,7 @@ import io.cucumber.java.en.Then;
 public class Login  {
 
     UserLogin lgn= new UserLogin() ;
+
     RequestSpecification res = new RequestSpecBuilder().setBaseUri("https://qcapi.anma.edu.sa/Api").build();
     Response  resp;
     String BodyResponse;

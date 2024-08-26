@@ -1,19 +1,16 @@
 package Pojo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import stepDefinitions.Login;
 
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
 
-public class GetUserProfile {
+public class Virtual_Clinic {
+
     @JsonProperty("Total")
     private String Total;
 
@@ -27,7 +24,7 @@ public class GetUserProfile {
     private String Filter;
 
     @JsonProperty("Data")
-    private UserProfileData Data;
+    private List<SP_ProfileData> data;
 
     @JsonProperty("Messages")
     private List<UserMessages> Messages;
@@ -43,7 +40,7 @@ public class GetUserProfile {
     }
 
     public void setTotal(String total) {
-        this.Total = total;
+        Total = total;
     }
 
     public String getPageNumber() {
@@ -51,7 +48,7 @@ public class GetUserProfile {
     }
 
     public void setPageNumber(String pageNumber) {
-        this.PageNumber = pageNumber;
+        PageNumber = pageNumber;
     }
 
     public String getPageSize() {
@@ -59,7 +56,7 @@ public class GetUserProfile {
     }
 
     public void setPageSize(String pageSize) {
-        this.PageSize = pageSize;
+        PageSize = pageSize;
     }
 
     public String getFilter() {
@@ -67,13 +64,15 @@ public class GetUserProfile {
     }
 
     public void setFilter(String filter) {
-        this.Filter = filter;
+        Filter = filter;
     }
 
-    public UserProfileData getData() { return Data; }
+    public List<SP_ProfileData> getData() {
+        return data;
+    }
 
-    public void setData(UserProfileData data) {
-        this.Data = data;
+    public void setData(List<SP_ProfileData> data) {
+        this.data = data;
     }
 
     public List<UserMessages> getMessages() {
@@ -81,7 +80,7 @@ public class GetUserProfile {
     }
 
     public void setMessages(List<UserMessages> messages) {
-        this.Messages = messages;
+        Messages = messages;
     }
 
     public String getIsSuccess() {
@@ -89,7 +88,7 @@ public class GetUserProfile {
     }
 
     public void setIsSuccess(String isSuccess) {
-        this.IsSuccess = isSuccess;
+        IsSuccess = isSuccess;
     }
 
     public String getException() {
@@ -97,26 +96,32 @@ public class GetUserProfile {
     }
 
     public void setException(String exception) {
-        this.Exception = exception;
+        Exception = exception;
     }
-
 
     UserLogin tkn = new UserLogin();
-    GetUserProfile gp;
-    public void UserProfile() {
+    Virtual_Clinic v;
+    public void VirtualClinic() {
 
-         gp = given().header("Authorization", tkn.getToken()).
+       v = given().header("Authorization", tkn.getToken()).contentType("application/json").body("{}").
                 when().log().all()
-                .get("https://qcapi.anma.edu.sa/Api/BeneficiaryUser/GetUser").as(GetUserProfile.class);
-        System.out.println(gp.getData().getFirstNameAr());
+                .post("https://qcapi.anma.edu.sa/Api/ServiceProviderUser/PublishedServiceProviderGetAll").as(Virtual_Clinic.class);
 
+        Response response = RestAssured
+                .given()
+                .header("Authorization", tkn.getToken())
+                .contentType("application/json")
+                .body("{}")
+                .when()
+                .log().all()
+                .post("https://qcapi.anma.edu.sa/Api/ServiceProviderUser/PublishedServiceProviderGetAll");
+
+// Print the entire response body
+        System.out.println(response.asPrettyString());
     }
-
 
     public void DisplayRespone() {
 
-
     }
-
 
 }

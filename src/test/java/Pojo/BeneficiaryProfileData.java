@@ -2,7 +2,7 @@ package Pojo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UserProfileData {
+public class BeneficiaryProfileData {
 
     @JsonProperty("UserName")
     private String UserName;

@@ -17,7 +17,7 @@ public class SP_ProfileData {
     private String ProfileVideoId;
 
     @JsonProperty("ProfileVideo")
-    private String profileVideo;
+    private  ProfileVideo profileVideo;
 
     @JsonProperty("Bio")
     private String bio;
@@ -119,7 +119,7 @@ public class SP_ProfileData {
     private String cvId;
 
     @JsonProperty("CV")
-    private String cv;
+    private CV cv;
 
     @JsonProperty("PhoneKeyId")
     private String phoneKeyId;
@@ -250,11 +250,11 @@ public class SP_ProfileData {
         this.ProfileVideoId = profileVideoId;
     }
 
-    public String getProfileVideo() {
+    public ProfileVideo getProfileVideo() {
         return profileVideo;
     }
 
-    public void setProfileVideo(String profileVideo) {
+    public void setProfileVideo(ProfileVideo profileVideo) {
         this.profileVideo = profileVideo;
     }
 
@@ -522,11 +522,11 @@ public class SP_ProfileData {
         this.cvId = cvId;
     }
 
-    public String getCv() {
+    public CV getCv() {
         return cv;
     }
 
-    public void setCv(String cv) {
+    public void setCv(CV cv) {
         this.cv = cv;
     }
 

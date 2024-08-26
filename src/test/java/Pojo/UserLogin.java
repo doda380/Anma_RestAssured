@@ -46,8 +46,8 @@ public class UserLogin{
         this.HasOrderFree = hasOrderFree;
     }
 
-    public static String getUserType() {
-        return UserType;
+    public String getUserType() {
+        return this.UserType;
     }
 
     public void setUserType(String userType) {

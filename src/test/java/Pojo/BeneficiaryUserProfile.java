@@ -7,7 +7,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 
-public class Get_SP_Profile {
+public class BeneficiaryUserProfile {
     @JsonProperty("Total")
     private String Total;
 
@@ -21,7 +21,7 @@ public class Get_SP_Profile {
     private String Filter;
 
     @JsonProperty("Data")
-    private SP_ProfileData Data;
+    private BeneficiaryProfileData Data;
 
     @JsonProperty("Messages")
     private List<UserMessages> Messages;
@@ -32,13 +32,12 @@ public class Get_SP_Profile {
     @JsonProperty("Exception")
     private String Exception;
 
-
     public String getTotal() {
         return Total;
     }
 
     public void setTotal(String total) {
-        Total = total;
+        this.Total = total;
     }
 
     public String getPageNumber() {
@@ -46,7 +45,7 @@ public class Get_SP_Profile {
     }
 
     public void setPageNumber(String pageNumber) {
-        PageNumber = pageNumber;
+        this.PageNumber = pageNumber;
     }
 
     public String getPageSize() {
@@ -54,7 +53,7 @@ public class Get_SP_Profile {
     }
 
     public void setPageSize(String pageSize) {
-        PageSize = pageSize;
+        this.PageSize = pageSize;
     }
 
     public String getFilter() {
@@ -62,15 +61,13 @@ public class Get_SP_Profile {
     }
 
     public void setFilter(String filter) {
-        Filter = filter;
+        this.Filter = filter;
     }
 
-    public SP_ProfileData getData() {
-        return Data;
-    }
+    public BeneficiaryProfileData getData() { return Data; }
 
-    public void setData(SP_ProfileData data) {
-        Data = data;
+    public void setData(BeneficiaryProfileData data) {
+        this.Data = data;
     }
 
     public List<UserMessages> getMessages() {
@@ -78,7 +75,7 @@ public class Get_SP_Profile {
     }
 
     public void setMessages(List<UserMessages> messages) {
-        Messages = messages;
+        this.Messages = messages;
     }
 
     public String getIsSuccess() {
@@ -86,7 +83,7 @@ public class Get_SP_Profile {
     }
 
     public void setIsSuccess(String isSuccess) {
-        IsSuccess = isSuccess;
+        this.IsSuccess = isSuccess;
     }
 
     public String getException() {
@@ -94,18 +91,20 @@ public class Get_SP_Profile {
     }
 
     public void setException(String exception) {
-        Exception = exception;
+        this.Exception = exception;
     }
+
 
     String BodyResponse;
     UserLogin tkn = new UserLogin();
-    Get_SP_Profile Sp;
-    public void SPUserProfile() {
+    BeneficiaryUserProfile gp;
+    public void UserProfile() {
 
-        Sp = given().header("Authorization", tkn.getToken()).
+         gp = given().header("Authorization", tkn.getToken()).
                 when().log().all()
-                .get("https://qcapi.anma.edu.sa/Api/ServiceProviderUser/GetUser").as(Get_SP_Profile.class);
-    System.out.println(Sp.getData().getFirstNameAr());
+                .get("https://qcapi.anma.edu.sa/Api/BeneficiaryUser/GetUser").as(BeneficiaryUserProfile.class);
+        System.out.println(gp.getData().getFirstNameAr());
+
     }
 
 
@@ -113,5 +112,6 @@ public class Get_SP_Profile {
 
 
     }
+
 
 }

@@ -1,19 +1,13 @@
 package Pojo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import stepDefinitions.Login;
 
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
 
-public class GetUserProfile {
+public class Get_SP_Profile {
     @JsonProperty("Total")
     private String Total;
 
@@ -27,7 +21,7 @@ public class GetUserProfile {
     private String Filter;
 
     @JsonProperty("Data")
-    private UserProfileData Data;
+    private SP_ProfileData Data;
 
     @JsonProperty("Messages")
     private List<UserMessages> Messages;
@@ -38,12 +32,13 @@ public class GetUserProfile {
     @JsonProperty("Exception")
     private String Exception;
 
+
     public String getTotal() {
         return Total;
     }
 
     public void setTotal(String total) {
-        this.Total = total;
+        Total = total;
     }
 
     public String getPageNumber() {
@@ -51,7 +46,7 @@ public class GetUserProfile {
     }
 
     public void setPageNumber(String pageNumber) {
-        this.PageNumber = pageNumber;
+        PageNumber = pageNumber;
     }
 
     public String getPageSize() {
@@ -59,7 +54,7 @@ public class GetUserProfile {
     }
 
     public void setPageSize(String pageSize) {
-        this.PageSize = pageSize;
+        PageSize = pageSize;
     }
 
     public String getFilter() {
@@ -67,13 +62,15 @@ public class GetUserProfile {
     }
 
     public void setFilter(String filter) {
-        this.Filter = filter;
+        Filter = filter;
     }
 
-    public UserProfileData getData() { return Data; }
+    public SP_ProfileData getData() {
+        return Data;
+    }
 
-    public void setData(UserProfileData data) {
-        this.Data = data;
+    public void setData(SP_ProfileData data) {
+        Data = data;
     }
 
     public List<UserMessages> getMessages() {
@@ -81,7 +78,7 @@ public class GetUserProfile {
     }
 
     public void setMessages(List<UserMessages> messages) {
-        this.Messages = messages;
+        Messages = messages;
     }
 
     public String getIsSuccess() {
@@ -89,7 +86,7 @@ public class GetUserProfile {
     }
 
     public void setIsSuccess(String isSuccess) {
-        this.IsSuccess = isSuccess;
+        IsSuccess = isSuccess;
     }
 
     public String getException() {
@@ -97,19 +94,18 @@ public class GetUserProfile {
     }
 
     public void setException(String exception) {
-        this.Exception = exception;
+        Exception = exception;
     }
 
-
+    String BodyResponse;
     UserLogin tkn = new UserLogin();
-    GetUserProfile gp;
-    public void UserProfile() {
+    Get_SP_Profile Sp;
+    public void SPUserProfile() {
 
-         gp = given().header("Authorization", tkn.getToken()).
+        Sp = given().header("Authorization", tkn.getToken()).
                 when().log().all()
-                .get("https://qcapi.anma.edu.sa/Api/BeneficiaryUser/GetUser").as(GetUserProfile.class);
-        System.out.println(gp.getData().getFirstNameAr());
-
+                .get("https://qcapi.anma.edu.sa/Api/ServiceProviderUser/GetUser").as(Get_SP_Profile.class);
+    System.out.println(Sp.getData().getFirstNameAr());
     }
 
 
@@ -117,6 +113,5 @@ public class GetUserProfile {
 
 
     }
-
 
 }

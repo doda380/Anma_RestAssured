@@ -8,5 +8,5 @@ Feature: Beneficiary Registration
 
     Examples:
       | MobileNumber  | PhoneKeyId | UserClassificationId | Email                | UserName | Password   | FirstNameAr | MiddleNameAr | LastNameAr | FirstNameEn | MiddleNameEn | LastNameEn | NationalID | Gender | ResidenceCountryId | CityId | District | EducationLevelId | Street    | BuildingNo | Occupation |
-      | 056610561     |   1        | 1                    | klm02@grr.la         | Keklm54   | Ahmed50#  | تست         | تست          | تست        | Gwendolyn    | Madonna     | Castaneda  | 75005560577 | Male   | 1                 |   2    | Nozha    | 7                | 6         | 4          | test test 05 |
+      | 054610561     |   1        | 1                    | klm03@grr.la         | KLM05   | Ahmed50#  | تست         | تست          | تست        | Gwendolyn    | Madonna     | Castaneda  | 75005561577 | Male   | 1                 |   2    | Nozha    | 7                | 6         | 4          | test test 05 |
 
